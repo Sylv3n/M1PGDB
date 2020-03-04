@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+	<head>
+		<meta charset="UTF-8" />
+		<title>PGDB</title>
+		<!--  <link rel="stylesheet" type="text/css" th:href="@{../css/index.css}"/>-->
+	</head>
+	
+	<body>
+    	<div class="box">
+    		<img src='../static/images/userPicture.jpg' class="userPicture" alt="Image Utilisateur" th:src="@{/images/userPicture.jpg}"/>
+    		
+             
+    		<h2>Authentification</h2>
+    		
+       		<form>          
+	            <label for="nom">Identifiant</label> <br>
+	            <input type="text" name="identifiant" id="identifiant" placeholder="Nom de compte" required/> <br>
+	            
+	            <label for="nom">Mot de passe</label> <br>
+	            <input type="password" name="pass" id="pass" placeholder="Mot de passe" required/> <br>
+	                    
+	            <input type="submit" name="connexion" value="Connexion" />                       
+			</form>
+			
+		</div> 
+    </body>
+</html>
