@@ -48,7 +48,7 @@ public class MongoApp {
 	    List<User> people =  mongoOps.findAll(User.class);
 	    System.out.println("Number of people = : " + people.size());
 	    
-	    //mongoOps.remove(mongoOps.findById("5e5ea25566f21b6a6c1eae83", User.class));
+	    mongoOps.remove(mongoOps.findById("5e5ea25566f21b6a6c1eae83", User.class));
 
 	    people =  mongoOps.findAll(User.class);
 	    System.out.println("Number of people = : " + people.size());
