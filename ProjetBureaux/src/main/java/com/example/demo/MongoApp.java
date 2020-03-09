@@ -75,7 +75,7 @@ public class MongoApp {
 	    
 	    //mongoOps.remove(mongoOps.findOne(query(where("userName").is("Oh")), CompteAdministrateur.class));
 	    //mongoOps.remove(mongoOps.findById("5e60d08153f2d77005e81166", CompteAdministrateur.class));
-	    
+	    //
 	    people =  mongoOps.findAll(CompteEmploye.class);
 	    peopleA =  mongoOps.findAll(CompteAdministrateur.class);
 	    System.out.println("Number of people = : " + people.size());
