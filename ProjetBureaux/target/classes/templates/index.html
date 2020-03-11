@@ -17,12 +17,12 @@
              
     		<h2>Authentification</h2>
     		
-       		<form>          
+       		<form th:action="@{/index}" th:object="${compteForm}" method="POST">          
 	            <label for="nom">Identifiant</label> <br>
-	            <input type="text" name="identifiant" id="identifiant" placeholder="Nom de compte" required/> <br>
+	            <input type="text" th:field="*{userName}" name="identifiant" id="identifiant" placeholder="Nom de compte" required /> <br>
 	            
 	            <label for="nom">Mot de passe</label> <br>
-	            <input type="password" name="pass" id="pass" placeholder="Mot de passe" required/> <br>
+	            <input type="password" th:field="*{password}" name="pass" id="pass" placeholder="Mot de passe" required /> <br>
 	                    
 	            <input type="submit" name="connexion" value="Connexion" />                       
 			</form>
