@@ -84,9 +84,9 @@ public class MongoApp {
 	    
 	    Query query = new Query();
 	    query.addCriteria(Criteria.where("userName").is("Admin"));
-	    query.addCriteria(Criteria.where("password").is("De2lm"));
+	    query.addCriteria(Criteria.where("password").is("pick1"));
 	    
-	    mongoOps.findOne(query, CompteAdministrateur.class);
-	    log.info("Updated: " + query);
+	    a1 = mongoOps.findOne(query, CompteAdministrateur.class);
+	    log.info("Updated: " + a1);
 	  }
 }
