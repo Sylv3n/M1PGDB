@@ -71,11 +71,13 @@ public class indexController {
 	    if(mongoOps.exists(query, CompteAdministrateur.class)) {
 	    	//model.addAttribute("compteA", compteA);
 	    	System.out.println("Vous êtes connecté en tant que Administrateur");
+	    	return "Accueil";
 	    }
 	    
 	    else if (mongoOps.exists(query, CompteEmploye.class)) {
 	    	//model.addAttribute("compteE", compteE);
 	    	System.out.println("Vous êtes connecté en tant que Employé");
+	    	return "Accueil";
 	    }
 	    
 	    else {
@@ -93,7 +95,7 @@ public class indexController {
 		System.out.println("Compte Employe " + query);*/
 		   
 	    
-        return "index";
+	    return "index";
 	}
 
 	
