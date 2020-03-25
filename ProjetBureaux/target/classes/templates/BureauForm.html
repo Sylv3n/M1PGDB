@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+	<head>
+		<meta charset="UTF-8" />
+		<title>Réservation Bureau</title>
+		<!--  <link rel="stylesheet" type="text/css" th:href="@{../css/index.css}"/>-->
+	</head>
+	
+	<body>
+			
+			<form th:action="@{/Bureau}" th:object="${infoReservationForm}" method="POST"> 
+				
+				<fieldset>
+					<legend>Informations concernant le bureau souhaité</legend> <!-- Titre du fieldset --> 
+					<p>
+		                Veuillez indiquer le site sur lequel vous souhaitez réserver :<br />
+		                <input type="radio" name="choixSite" value="siteA" id="siteA" /> <label for="siteA">Site A</label><br />
+		                <input type="radio" name="choixSite" value="siteB" id="siteB" /> <label for="siteB">Site B</label><br />
+		                <input type="radio" name="choixSite" value="siteC" id="siteC" /> <label for="siteC">Site C</label><br />
+	            	</p>
+	           	  
+					<p>
+		                <label for="capaciteBureau">Capacité d'accueil :</label><br />
+		                <select name="capaciteBureau" id="capaciteBureau">
+		                    <option value="un" selected>1</option>
+		                    <option value="deux">2</option>
+		                    <option value="trois" >3</option>
+		                    <option value="quatre">4</option>
+		                </select>
+		            </p>	
+		            
+		            <p>
+		                <label for="dateDebutR">Date d'arrivée : </label>
+		                <input type="datetime-local" name="dateDebutR" id="dateDebutR">
+	          	  	</p>
+	          	  	
+	          	  	<p>
+		                <label for="dateFinR">Date de départ : </label>
+		                <input type="datetime-local" name="dateFinR" id="dateFinR">
+	          	  	</p>
+            	</fieldset>
+            	
+            	<input type="submit" name="validerForm" value="Valider" />    
+            	
+			</form>
+
+	
+	</body>
