@@ -1,12 +1,12 @@
 package com.example.demo;
 
 public abstract class Service {
-	private String idService;
-	private String site;
-	private boolean etat;
+	private String _id;
+	public String site;
+	public String etat;
 	
 	
-	public Service(String site, boolean etat) {
+	public Service(String site, String etat) {
 		super();
 		this.site = site;
 		this.etat = etat;
@@ -14,7 +14,7 @@ public abstract class Service {
 
 
 	public String getIdService() {
-		return idService;
+		return _id;
 	}
 
 
@@ -23,8 +23,13 @@ public abstract class Service {
 	}
 
 
-	public boolean isEtat() {
+	public String isEtat() {
 		return etat;
+	}
+
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 	
 	

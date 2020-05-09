@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.demo.Bureau;
 import com.example.demo.Compte;
 import com.example.demo.CompteAdministrateur;
 import com.example.demo.CompteEmploye;
@@ -29,6 +30,10 @@ import com.example.demo.CompteForm;
 import com.example.demo.MongoApp;
 import com.mongodb.client.MongoClients;
 
+class GloCompte {
+	public static String userNameGlo = "";
+	public static boolean isAdminGlo = false;
+}
 
 @Controller
 public class indexController {
@@ -64,6 +69,8 @@ public class indexController {
 		String userName = compteForm.getUserName();
 		String password = compteForm.getPassword();
 		
+		GloCompte.userNameGlo = userName;
+		
 	    Query query = new Query();
 	    query.addCriteria(Criteria.where("userName").is(userName));
 	    query.addCriteria(Criteria.where("password").is(password));
@@ -71,11 +78,15 @@ public class indexController {
 	    if(mongoOps.exists(query, CompteAdministrateur.class)) {
 	    	//model.addAttribute("compteA", compteA);
 	    	System.out.println("Vous êtes connecté en tant que Administrateur");
+	    	GloCompte.isAdminGlo = true;
+	    	return "Accueil";
 	    }
 	    
 	    else if (mongoOps.exists(query, CompteEmploye.class)) {
 	    	//model.addAttribute("compteE", compteE);
 	    	System.out.println("Vous êtes connecté en tant que Employé");
+	    	GloCompte.isAdminGlo = false;
+	    	return "Accueil";
 	    }
 	    
 	    else {
@@ -93,7 +104,7 @@ public class indexController {
 		System.out.println("Compte Employe " + query);*/
 		   
 	    
-        return "index";
+	    return "index";
 	}
 
 	

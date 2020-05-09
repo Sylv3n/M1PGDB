@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+	<head>
+		<meta charset="UTF-8" />
+		<title>Services</title>
+		<!--  <link rel="stylesheet" type="text/css" th:href="@{../css/index.css}"/>-->
+	</head>
+	
+	<body>
+	
+		<form th:action="@{/Bureau}" method="GET">  
+			<input type="submit" name="r_Bureau" value="Bureau" /> 
+		</form>
+		
+		<form th:action="@{/Salledereunion}" method="GET">  
+			<input type="submit" name="r_Salledereunion" value="Salle de réunion" /> 
+		</form>
+		
+		<form th:action="@{/Placedeparking}" method="GET">  
+			<input type="submit" name="r_Placedeparking" value="Place de parking" /> 
+		</form>
+		
+		<form th:action="@{/Plateaurepas}" method="GET">  
+			<input type="submit" name="r_Plateaurepas" value="Plateau repas" /> 
+		</form>
+		
+		<form th:action="@{/Badgevisiteur}" method="GET">  
+			<input type="submit" name="r_Badgevisiteur" value="Badge visiteur" /> 
+		</form>
+		
+	</body>
+</html>

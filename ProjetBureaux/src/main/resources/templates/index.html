@@ -7,24 +7,24 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>PGDB</title>
-		<!--  <link rel="stylesheet" type="text/css" th:href="@{../css/index.css}"/>-->
+		<link rel="stylesheet" href="style.css" media="screen" type="text/css" th:href="@{../css/index.css}"/>
 	</head>
 	
 	<body>
-    	<div class="box">
+    	<div id="container">
     		<!-- <img src='../static/images/userPicture.jpg' class="userPicture" alt="Image Utilisateur" th:src="@{/images/userPicture.jpg}"/> -->
+    		      
     		
-             
-    		<h2>Authentification</h2>
-    		
-       		<form th:action="@{/index}" th:object="${compteForm}" method="POST">          
-	            <label for="nom">Identifiant</label> <br>
-	            <input type="text" th:field="*{userName}" name="identifiant" id="identifiant" placeholder="Nom de compte" required /> <br>
+       		<form th:action="@{/index}" th:object="${compteForm}" method="POST">  
+       			<h1>Connexion</h1>   
+       			     
+	            <label for="nom"><b>Nom d'utilisateur</b></label> <br>
+	            <input type="text" th:field="*{userName}" name="username" placeholder="Entrer le nom d'utilisateur" required /> <br>
 	            
 	            <label for="nom">Mot de passe</label> <br>
-	            <input type="password" th:field="*{password}" name="pass" id="pass" placeholder="Mot de passe" required /> <br>
+	            <input type="password" th:field="*{password}" name="password" placeholder="Mot de passe" required /> <br>
 	                    
-	            <input type="submit" name="connexion" value="Connexion" />                       
+	            <input type="submit" id='submit' value="LOGIN" />                       
 			</form>
 			
 		</div> 
