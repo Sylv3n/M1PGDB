@@ -7,29 +7,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ServicesController {
 
 	
-	@GetMapping("/BureauForm")
+	@GetMapping("/Bureau")
 	public String bureau() {
-		return "BureauForm";
+		return "BureauFormPage";
 	}
 	
 	@GetMapping("/Salledereunion")
 	public String salledereunion() {
-		return "Salledereunion";
+		return "SalleDeReunionFormPage";
 	}
 	
 	@GetMapping("/Placedeparking")
 	public String placedeparking() {
-		return "Placedeparking";
+		return "ParkingFormPage";
 	}
 	
 	@GetMapping("/Plateaurepas")
 	public String plateaurepas() {
-		return "Plateaurepas";
+		return "PlateauRepasFormPage";
 	}
 	
 	@GetMapping("/Badgevisiteur")
 	public String badgevisiteur() {
-		return "Badgevisiteur";
+		return "BadgeVisiteurFormPage";
 	}
 	
 }

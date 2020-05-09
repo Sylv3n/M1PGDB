@@ -3,22 +3,28 @@ package com.example.demo;
 import java.util.Date;
 
 public class BureauForm {
-	private Service service;
-	private Compte proprietaire;
+	private Bureau bureau;
+	private String site;
+	private String capacite;
 	private Date dateDebut;
 	private Date dateFin;
-	private Date heureDebut;
-	private Date heureFin;
+	/*private Date heureDebut;
+	private Date heureFin;*/
 	private boolean etat;
 	
 	
-	public Service getService() {
-		return service;
+	public Bureau getBureau() {
+		return bureau;
 	}
-	
-	
-	public Compte getProprietaire() {
-		return proprietaire;
+
+
+	public String getSite() {
+		return site;
+	}
+
+
+	public String getCapacite() {
+		return capacite;
 	}
 
 
@@ -32,17 +38,17 @@ public class BureauForm {
 	}
 
 
-	public Date getHeureDebut() {
+	/*public Date getHeureDebut() {
 		return heureDebut;
 	}
 
 
 	public Date getHeureFin() {
 		return heureFin;
-	}
+	}*/
 
 
-	public boolean isEtat() {
+	public boolean getEtat() {
 		return etat;
 	}
 

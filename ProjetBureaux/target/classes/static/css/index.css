@@ -1,82 +1,47 @@
-body {
-	margin:0;
-	padding:0;
-	background: url(userPicture.jpg);
-	background-size: cover;
-	font-family: sans-serif;
+body{
+    background: #67BE4B;
+}
+#container{
+    width:400px;
+    margin:0 auto;
+    margin-top:10%;
+}
+/* Bordered form */
+form {
+    width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
 }
 
-.box {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 30%;
-	height: 50%;
-	box-sizing: border-box;
-	background: rgba(0,0,0,.5);
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
-.box label {
-	magin: 0;
-	padding: 0;
-	font-weight: bold;
-	color: #fff;
+/* Set a style for all buttons */
+input[type=submit] {
+    background-color: #53af57;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
-
-.box input {
-	width: 100%;
-	margin-bottom: 10%;
+input[type=submit]:hover {
+    background-color: white;
+    color: #53af57;
+    border: 1px solid #53af57;
 }
-
-.box input[type="text"], .box input[type="password"] {
-	border: none;
-	border-bottom: 1px solid #fff;
-	background: transparent;
-	outline: none;
-	height: 2%;
-	color: #fff;
-	font-size: 16px;
-}
-
-::placeholder {
-	color: rgba(255, 255, 255, .5);
-}
-
-.box input[type=submit] {
-	border: none;
-	outline: none;
-	height: 2%;
-	color: #fff;
-	font-size: 16px;
-	background: #ff267e;
-	cursor: pointer;
-	border-radius: 2%;
-}
-
-.box input[type=submit]:hover {
-	background: #efed40;
-	color: #fff;
-}
-
-.box a {
-	color: #fff;
-	font-size: 2px;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-.userPicture {
-	width: 10%;
-	height: 10%;
-	border-radius: 50%;
-	overflow: hidden;
-}
-
-h2 {
-	margin: 0;
-	padding: 0 0 10%;
-	color: #efed40;
-	text-align: center;
-}
-

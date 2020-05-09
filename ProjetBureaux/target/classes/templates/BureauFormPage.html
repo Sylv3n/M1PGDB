@@ -12,24 +12,24 @@
 	
 	<body>
 			
-			<form th:action="@{/Bureau}" th:object="${infoReservationForm}" method="POST"> 
+			<form th:action="@{/BureauFormP}" th:object="${bureauForm}" method="POST"> 
 				
 				<fieldset>
 					<legend>Informations concernant le bureau souhaité</legend> <!-- Titre du fieldset --> 
 					<p>
 		                Veuillez indiquer le site sur lequel vous souhaitez réserver :<br />
-		                <input type="radio" name="choixSite" value="siteA" id="siteA" /> <label for="siteA">Site A</label><br />
-		                <input type="radio" name="choixSite" value="siteB" id="siteB" /> <label for="siteB">Site B</label><br />
-		                <input type="radio" name="choixSite" value="siteC" id="siteC" /> <label for="siteC">Site C</label><br />
+		                <input type="radio" name="choixSite" value="Site A" id="siteA" /> <label for="siteA">Site A</label><br />
+		                <input type="radio" name="choixSite" value="Site B" id="siteB" /> <label for="siteB">Site B</label><br />
+		                <input type="radio" name="choixSite" value="Site C" id="siteC" /> <label for="siteC">Site C</label><br />
 	            	</p>
 	           	  
 					<p>
 		                <label for="capaciteBureau">Capacité d'accueil :</label><br />
 		                <select name="capaciteBureau" id="capaciteBureau">
-		                    <option value="un" selected>1</option>
-		                    <option value="deux">2</option>
-		                    <option value="trois" >3</option>
-		                    <option value="quatre">4</option>
+		                    <option value="1" selected>1</option>
+		                    <option value="2" >2</option>
+		                    <option value="3">3</option>
+		                    <option value="4">4</option>
 		                </select>
 		            </p>	
 		            

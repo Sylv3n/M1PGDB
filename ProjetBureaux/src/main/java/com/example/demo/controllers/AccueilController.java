@@ -11,4 +11,11 @@ public class AccueilController {
 	public String reserver() {
 		return "Services";
 	}
+	
+	
+	@GetMapping("/storePage")
+	public String mesReservations() {
+		return "redirect:store";
+	}
+	
 }
