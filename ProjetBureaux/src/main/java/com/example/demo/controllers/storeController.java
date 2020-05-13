@@ -131,7 +131,7 @@ public class storeController {
 				}
 			}
 		}
-		return "store";
+		return "redirect:store";
 	}
 	
 	
@@ -157,7 +157,7 @@ public class storeController {
 			}
 		}
 	    
-		return "store";
+		return "redirect:store";
 	}
 	
 	
@@ -183,7 +183,7 @@ public class storeController {
 			}
 		}
 		
-		return "store";
+		return "redirect:store";
 	}
 	
 	
@@ -228,7 +228,7 @@ public class storeController {
 			}
 		}
 		
-		return "store";
+		return "redirect:store";
 	}
 	
 	
@@ -254,7 +254,7 @@ public class storeController {
 			}
 		}
 
-		return "store";
+		return "redirect:store";
 	}
 
 }

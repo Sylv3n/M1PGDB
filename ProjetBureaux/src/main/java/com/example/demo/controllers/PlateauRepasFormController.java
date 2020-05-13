@@ -137,6 +137,6 @@ public class PlateauRepasFormController {
 
 		
 	    
-	    return "redirect:PlateauRepasFormPage";
+	    return "redirect:store";
 	}
 }

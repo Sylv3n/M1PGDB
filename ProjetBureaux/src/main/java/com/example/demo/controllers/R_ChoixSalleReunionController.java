@@ -59,7 +59,7 @@ public class R_ChoixSalleReunionController {
 		}
 	    
 	    
-		return "R_ChoixSalleReunion";
+		return "redirect:store";
 	}
 	
 	

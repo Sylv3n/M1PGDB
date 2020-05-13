@@ -60,7 +60,7 @@ public class R_ChoixPlaceParkingController {
 		}
 	    
 	    
-		return "R_ChoixPlaceParking";
+		return "redirect:store";
 	}
 	
 	

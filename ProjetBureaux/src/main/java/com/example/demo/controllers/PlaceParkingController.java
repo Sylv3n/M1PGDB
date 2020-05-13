@@ -12,78 +12,98 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Bureau;
 import com.example.demo.CompteAdministrateur;
 import com.example.demo.CompteEmploye;
 import com.example.demo.MongoApp;
 import com.example.demo.PlaceDeParking;
+import com.example.demo.SalleDeReunion;
 import com.example.demo.PlaceDeParking;
 import com.mongodb.client.MongoClients;
 
 @Controller
 public class PlaceParkingController {
 	private static final Log log = LogFactory.getLog(MongoApp.class);
-
-	  public static void main(String[] args) throws Exception {
-
-	    MongoOperations mongoOps = new MongoTemplate(MongoClients.create(), "pgdb");
-	    
-	    PlaceDeParking p1 = new PlaceDeParking("Site A", "Disponible", "P101", "-1");
-	    //mongoOps.insert(b1);
-	    mongoOps.save(p1);
-	    
-	    PlaceDeParking p2 = new PlaceDeParking("Site A", "Disponible", "P102", "-1");
-	    //mongoOps.insert(b2);
-	    mongoOps.save(p2);
-	    
-	    PlaceDeParking p3 = new PlaceDeParking("Site A", "Disponible", "P103", "-2");
-	    //mongoOps.insert(b3);
-	    mongoOps.save(p3);
-	    
-	    PlaceDeParking t = new PlaceDeParking("Site A", "Disponible", "P10T", "-2");
-	    //mongoOps.insert(t);
-	    mongoOps.save(t);
-	    
-	    PlaceDeParking p4 = new PlaceDeParking("Site B", "Disponible", "P104", "-1");
-	    //mongoOps.insert(b4);
-	    mongoOps.save(p4);
-	    
-	    PlaceDeParking p5 = new PlaceDeParking("Site C", "Indisponible", "P105", "-2");
-	    //mongoOps.insert(b5);
-	    mongoOps.save(p5);
-
-	    /*log.info(mongoOps.findOne(new Query(where("userName").is("Bonnet")), CompteEmploye.class));
-	    log.info("Insert: " + u1);
-	    
-	    u1 = mongoOps.findById(u1.getId(), CompteEmploye.class);
-	    log.info("Found: " + u1);
-	    
-	    u1 = mongoOps.findOne(query(where("userName").is("Bonnet")), CompteEmploye.class);
-	    log.info("Updated: " + u1);
-	    
-	    //mongoOps.updateFirst(query(where("userName").is("Bonnet")), update("userName", "Patrick"), CompteEmploye.class);    
-	   // a1 = mongoOps.findOne(query(where("userName").is("Patrick")), CompteAdministrateur.class);
-	   // log.info("Updated: " + u1);*/
+	MongoOperations mongoOps = new MongoTemplate(MongoClients.create(), "pgdb");
+	  
+	@GetMapping("/ParkingFormPAdd")
+	public String receptionParkingForm(Model model, @RequestParam("choixSite") String site1, @RequestParam("capaciteSalle") String capacite1, @RequestParam("nameNewPlace") String nameNewPlace1) {	
+		return "ParkingFormPageAdd";
+	}
+	
+	
+	
+	@PostMapping("/ParkingFormPAdd") 
+	public String rechercheParking(Model model, @RequestParam("choixSite") String site1, @RequestParam("etagePlaceParking") String etage1, @RequestParam("nameNewPlace") String nameNewPlace1) {
+		String site = site1;
+		String etage = etage1;
+		String nameNewPlace = nameNewPlace1;
+	    String etatSalle = "Disponible";
+	    boolean used = false; 
 	    
 	    List<PlaceDeParking> people =  mongoOps.findAll(PlaceDeParking.class);
 	    System.out.println("Number of people = : " + people.size());
 	    
+	    for (int i = 0; i < people.size(); i++) {
+		    if(people.get(i).getNumero().equals(nameNewPlace1)) {
+		    	used = true;
+		    	System.out.println("Nom déjà utilisé");
+		    	return "ParkingFormPageAdd";
+		    }
+		    
+		    else if(!people.get(i).getNumero().equals(nameNewPlace1)) {
+		    	used = false;
+		    }		    
+	    }
 	    
-	    //mongoOps.remove(mongoOps.findOne(query(where("userName").is("Oh")), CompteAdministrateur.class));
-	    //mongoOps.remove(mongoOps.findById("5e60d08153f2d77005e81166", CompteAdministrateur.class));
-	    
-	    people =  mongoOps.findAll(PlaceDeParking.class);
-	    System.out.println("Number of people = : " + people.size());
+	    if (used == false) {
+		    //mongoOps.remove(mongoOps.findOne(query(where("userName").is("Oh")), CompteAdministrateur.class));
+		    //mongoOps.remove(mongoOps.findById("5e60d08153f2d77005e81166", CompteAdministrateur.class));
+	    	PlaceDeParking p1 = new PlaceDeParking(site, etatSalle, nameNewPlace, etage);
+		    mongoOps.save(p1);
+		    
+		    people =  mongoOps.findAll(PlaceDeParking.class);
+		    System.out.println("Number of people = : " + people.size());
 
-	    
-	    //Query query = new Query();
-	    //query.addCriteria(Criteria.where("site").is("Admin"));
-	    //query.addCriteria(Criteria.where("etat").is("pick1"));
-	    //query.addCriteria(Criteria.where("site").is("Admin"));
-	    //query.addCriteria(Criteria.where("etat").is("pick1"));
-	    
-	    //b2 = mongoOps.findOne(query, Bureau.class);
-	    //log.info("Updated: " + b2);
-	  }
+		    return "ServicesAdmin";
+	    }
+	    return "ServicesAdmin";
+	}
+	
+	
+	
+	@PostMapping("/ParkingFormPRemove") 
+	public String rechercheRemoveParking(Model model, @RequestParam("choixSite") String site1,  @RequestParam("nameRemovePlace") String nameRemovePlace1) {
+		String site = site1;
+		String nameRemovePlace = nameRemovePlace1;
+		
+	    List<PlaceDeParking> people =  mongoOps.findAll(PlaceDeParking.class);
+	    System.out.println("Number of people = : " + people.size());
+	    	    	
+		Query querySuppression = new Query();
+		querySuppression.addCriteria(Criteria.where("site").is(site));
+		querySuppression.addCriteria(Criteria.where("numero").is(nameRemovePlace));
+		    	
+		if (mongoOps.exists(querySuppression, PlaceDeParking.class)) {
+			mongoOps.remove(mongoOps.findOne(querySuppression, PlaceDeParking.class));
+			System.out.println("Suppression");
+			return "ServicesAdmin";
+		}
+		
+		else if(!mongoOps.exists(querySuppression, PlaceDeParking.class)) {
+	    	System.out.println("Aucune place existante ne possède ce nom");
+	    	return "ParkingFormPageRemove";
+	    }
+		
+		
+		return "ServicesAdmin";
+	}
+	
 }
+
+

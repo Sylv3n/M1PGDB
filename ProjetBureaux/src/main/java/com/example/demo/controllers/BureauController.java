@@ -12,76 +12,99 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Bureau;
+import com.example.demo.BureauForm;
 import com.example.demo.CompteAdministrateur;
 import com.example.demo.CompteEmploye;
 import com.example.demo.MongoApp;
+import com.example.demo.Reservation;
 import com.mongodb.client.MongoClients;
 
 @Controller
 public class BureauController {
 	private static final Log log = LogFactory.getLog(MongoApp.class);
+	MongoOperations mongoOps = new MongoTemplate(MongoClients.create(), "pgdb");
 
-	  public static void main(String[] args) throws Exception {
-
-	    MongoOperations mongoOps = new MongoTemplate(MongoClients.create(), "pgdb");
-	    
-	    Bureau b1 = new Bureau("Site A", "Disponible", "A101", "1");
-	    //mongoOps.insert(b1);
-	    mongoOps.save(b1);
-	    
-	    Bureau b2 = new Bureau("Site A", "Disponible", "A102", "1");
-	    //mongoOps.insert(b2);
-	    mongoOps.save(b2);
-	    
-	    Bureau b3 = new Bureau("Site A", "Disponible", "A103", "2");
-	    //mongoOps.insert(b3);
-	    mongoOps.save(b3);
-	    
-	    Bureau t = new Bureau("Site A", "Disponible", "A10T", "2");
-	    //mongoOps.insert(t);
-	    mongoOps.save(t);
-	    
-	    Bureau b4 = new Bureau("Site B", "Disponible", "A104", "3");
-	    //mongoOps.insert(b4);
-	    mongoOps.save(b4);
-	    
-	    Bureau b5 = new Bureau("Site C", "Indisponible", "A105", "1");
-	    //mongoOps.insert(b5);
-	    mongoOps.save(b5);
-
-	    /*log.info(mongoOps.findOne(new Query(where("userName").is("Bonnet")), CompteEmploye.class));
-	    log.info("Insert: " + u1);
-	    
-	    u1 = mongoOps.findById(u1.getId(), CompteEmploye.class);
-	    log.info("Found: " + u1);
-	    
-	    u1 = mongoOps.findOne(query(where("userName").is("Bonnet")), CompteEmploye.class);
-	    log.info("Updated: " + u1);
-	    
-	    //mongoOps.updateFirst(query(where("userName").is("Bonnet")), update("userName", "Patrick"), CompteEmploye.class);    
-	   // a1 = mongoOps.findOne(query(where("userName").is("Patrick")), CompteAdministrateur.class);
-	   // log.info("Updated: " + u1);*/
+	@GetMapping("/BureauFormPAdd")
+	public String receptionBureauForm(Model model, @RequestParam("choixSite") String site1, @RequestParam("capaciteBureau") String capacite1, @RequestParam("nameNewBureau") String nameNewBureau1) {	
+		return "BureauFormPAdd";
+	}
+	
+	
+	
+	@PostMapping("/BureauFormPAdd") 
+	public String rechercheBureau(Model model, @RequestParam("choixSite") String site1, @RequestParam("capaciteBureau") String capacite1, @RequestParam("nameNewBureau") String nameNewBureau1) {
+		String site = site1;
+		String capacite = capacite1;
+		String nameNewBureau = nameNewBureau1;
+	    String etatBureau = "Disponible";
+	    boolean used = false; 
 	    
 	    List<Bureau> people =  mongoOps.findAll(Bureau.class);
 	    System.out.println("Number of people = : " + people.size());
 	    
+	    for (int i = 0; i < people.size(); i++) {
+		    if(people.get(i).getNom().equals(nameNewBureau)) {
+		    	used = true;
+		    	System.out.println("Nom déjà utilisé");
+		    	return "BureauFormPageAdd";
+		    }
+		    
+		    else if(!people.get(i).getNom().equals(nameNewBureau)) {
+		    	used = false;
+		    }		    
+	    }
 	    
-	    //mongoOps.remove(mongoOps.findOne(query(where("userName").is("Oh")), CompteAdministrateur.class));
-	    //mongoOps.remove(mongoOps.findById("5e60d08153f2d77005e81166", CompteAdministrateur.class));
-	    
-	    people =  mongoOps.findAll(Bureau.class);
-	    System.out.println("Number of people = : " + people.size());
+	    if (used == false) {
+		    //mongoOps.remove(mongoOps.findOne(query(where("userName").is("Oh")), CompteAdministrateur.class));
+		    //mongoOps.remove(mongoOps.findById("5e60d08153f2d77005e81166", CompteAdministrateur.class));
+		    Bureau b1 = new Bureau(site, etatBureau, nameNewBureau, capacite);
+		    mongoOps.save(b1);
+		    
+		    people =  mongoOps.findAll(Bureau.class);
+		    System.out.println("Number of people = : " + people.size());
+	
 
-	    
-	    Query query = new Query();
-	    query.addCriteria(Criteria.where("site").is("Admin"));
-	    query.addCriteria(Criteria.where("etat").is("pick1"));
-	    //query.addCriteria(Criteria.where("site").is("Admin"));
-	    //query.addCriteria(Criteria.where("etat").is("pick1"));
-	    
-	    b2 = mongoOps.findOne(query, Bureau.class);
-	    log.info("Updated: " + b2);
-	  }
+		    return "ServicesAdmin";
+	    }
+	    return "ServicesAdmin";
+	}
+	
+	
+	
+	@PostMapping("/BureauFormPRemove") 
+	public String rechercheRemoveBureau(Model model, @RequestParam("choixSite") String site1, @RequestParam("nameRemoveBureau") String nameRemoveBureau1) {
+		String site = site1;
+		String nameRemoveBureau = nameRemoveBureau1;
+		System.out.println(site);
+		System.out.println(nameRemoveBureau);
+		
+	    List<Bureau> people =  mongoOps.findAll(Bureau.class);
+	    System.out.println("Number of people = : " + people.size());
+	    	    	
+		Query querySuppression = new Query();
+		querySuppression.addCriteria(Criteria.where("site").is(site));
+		querySuppression.addCriteria(Criteria.where("nom").is(nameRemoveBureau));
+		    	
+		if (mongoOps.exists(querySuppression, Bureau.class)) {
+			mongoOps.remove(mongoOps.findOne(querySuppression, Bureau.class));
+			System.out.println("Suppression");
+			return "ServicesAdmin";
+		}
+		
+		else if(!mongoOps.exists(querySuppression, Bureau.class)) {
+	    	System.out.println("Aucun bureau existant ne possède ce nom");
+	    	return "BureauFormPageRemove";
+	    }
+		
+		
+		return "ServicesAdmin";
+	}
+		   
+	
 }

@@ -63,7 +63,7 @@ public class R_ChoixBureauController {
 				
 	    
 	    
-		return "R_ChoixBureau";
+		return "redirect:store";
 	}
 	
 

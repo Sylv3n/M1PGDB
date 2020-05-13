@@ -1,32 +1,78 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
 
-	
-	<head>
-		<meta charset="UTF-8" />
-		<title>PGDB</title>
-		<link rel="stylesheet" href="style.css" media="screen" type="text/css" th:href="@{../css/index.css}"/>
-	</head>
-	
-	<body>
-    	<div id="container">
-    		<!-- <img src='../static/images/userPicture.jpg' class="userPicture" alt="Image Utilisateur" th:src="@{/images/userPicture.jpg}"/> -->
-    		      
-    		
-       		<form th:action="@{/index}" th:object="${compteForm}" method="POST">  
-       			<h1>Connexion</h1>   
-       			     
-	            <label for="nom"><b>Nom d'utilisateur</b></label> <br>
-	            <input type="text" th:field="*{userName}" name="username" placeholder="Entrer le nom d'utilisateur" required /> <br>
-	            
-	            <label for="nom">Mot de passe</label> <br>
-	            <input type="password" th:field="*{password}" name="password" placeholder="Mot de passe" required /> <br>
-	                    
-	            <input type="submit" id='submit' value="LOGIN" />                       
-			</form>
-			
-		</div> 
-    </body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PGDB</title>
+
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="bootstrap.min.css" media="screen" type="text/css" th:href="@{../css/vendor/bootstrap/css/bootstrap.min.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+<link rel="stylesheet" href="business-casual.min.css" media="screen" type="text/css" th:href="@{../css/business-casual.min.css}"/>
+
+  </head>
+
+  <body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      <span class="site-heading-upper text-primary mb-3">Services D'entreprise</span>
+      <span class="site-heading-lower">Société Taylor</span>
+    </h1>
+
+    <section class="page-section cta">
+    
+      <div class="container">
+      
+        <div class="row">
+        
+          <div class="col-xl-9 mx-auto">
+          
+            <div class="bg-faded rounded text-center p-5">
+
+				<form th:action="@{/index}" th:object="${compteForm}" method="POST">
+                   <h1>Connexion</h1><br><br>
+
+                <label for="nom"><b>Nom d'utilisateur</b></label> <br>
+                <input style="width:40%;"type="text" th:field="*{userName}" name="username" placeholder="Entrer le nom d'utilisateur" required /> <br><br>
+
+                <label for="nom"><b>Mot de passe</b> </label> <br>
+                <input style="width:40%;"type="password" th:field="*{password}" name="password" placeholder="Mot de passe" required /> <br><br>
+
+                <input type="submit" id='submit' value="LOGIN" />
+                
+           		</form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0 small">contactez nous en cas de problèmes au : 06.67.82.96.47</p>
+      </div>
+    </footer>
+
+    <!-- core JavaScript -->
+    <script src="../css/vendor/jquery/jquery.min.js"></script>
+    <script src="../css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+  <!-- Script to highlight the active date in the hours list -->
+  <script>
+    $('.list-hours li').eq(new Date().getDay()).addClass('today');
+  </script>
+
 </html>

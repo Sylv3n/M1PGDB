@@ -163,6 +163,6 @@ public class BadgeVisiteurFormController {
 
 		
 	    
-	    return "redirect:BadgeVisiteurFormPage";
+	    return "redirect:store";
 	}
 }

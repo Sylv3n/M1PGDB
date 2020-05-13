@@ -32,4 +32,37 @@ public class ServicesController {
 		return "BadgeVisiteurFormPage";
 	}
 	
+	
+	
+	
+	
+	@GetMapping("/BureauAdd")
+	public String bureauAdd() {
+		return "BureauFormPageAdd";
+	}
+	
+	@GetMapping("/SalledereunionAdd")
+	public String salledereunioAdd() {
+		return "SalleDeReunionFormPageAdd";
+	}
+	
+	@GetMapping("/PlacedeparkingAdd")
+	public String placedeparkingAdd() {
+		return "ParkingFormPageAdd";
+	}
+	
+	@GetMapping("/BureauRemove")
+	public String bureauRemove() {
+		return "BureauFormPageRemove";
+	}
+	
+	@GetMapping("/SalledereunionRemove")
+	public String salledereunionRemove() {
+		return "SalleDeReunionFormPageRemove";
+	}
+	
+	@GetMapping("/PlacedeparkingRemove")
+	public String placedeparkingRemove() {
+		return "ParkingFormPageRemove";
+	}
 }
